@@ -1,0 +1,51 @@
+[gd_scene load_steps=10 format=3 uid="uid://cnswvw6hj3mgo"]
+
+[ext_resource type="Texture2D" uid="uid://osyntdjucwmg" path="res://assets/textures/texture_black_05.png" id="1_3oto2"]
+[ext_resource type="PackedScene" uid="uid://b5xw6n5qhjbfh" path="res://player.tscn" id="1_u6s6d"]
+[ext_resource type="PackedScene" uid="uid://btreadwrdqtdk" path="res://totem.tscn" id="2_k33s8"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_0mfat"]
+sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+
+[sub_resource type="Sky" id="Sky_xkqjg"]
+sky_material = SubResource("ProceduralSkyMaterial_0mfat")
+
+[sub_resource type="Environment" id="Environment_1gh8v"]
+background_mode = 2
+sky = SubResource("Sky_xkqjg")
+tonemap_mode = 2
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_d5xso"]
+albedo_texture = ExtResource("1_3oto2")
+point_size = 27.7
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_h52u0"]
+material = SubResource("StandardMaterial3D_d5xso")
+size = Vector2(20, 20)
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_7344g"]
+data = PackedVector3Array(10, 0, 10, -10, 0, 10, 10, 0, -10, -10, 0, 10, -10, 0, -10, 10, 0, -10)
+
+[node name="Node3D" type="Node3D"]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75, -0.433013, 0, 0, 0)
+light_color = Color(0.870588, 0.670588, 0.627451, 1)
+shadow_enabled = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_1gh8v")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("PlaneMesh_h52u0")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_7344g")
+
+[node name="Player" parent="." instance=ExtResource("1_u6s6d")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -5)
+
+[node name="AnimatableBody3D" parent="." instance=ExtResource("2_k33s8")]
