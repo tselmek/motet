@@ -18,6 +18,8 @@ tonemap_mode = 2
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_d5xso"]
 albedo_texture = ExtResource("1_3oto2")
+anisotropy_enabled = true
+uv1_triplanar = true
 point_size = 27.7
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_h52u0"]
@@ -31,7 +33,6 @@ data = PackedVector3Array(10, 0, 10, -10, 0, 10, 10, 0, -10, -10, 0, 10, -10, 0,
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75, -0.433013, 0, 0, 0)
-light_color = Color(0.870588, 0.670588, 0.627451, 1)
 shadow_enabled = true
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]

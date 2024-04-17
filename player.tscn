@@ -23,5 +23,6 @@ shape = SubResource("ConvexPolygonShape3D_jsb20")
 
 [node name="Camera3D" type="Camera3D" parent="Pivot"]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0.8, 0)
+fov = 60.0
 near = 0.01
 far = 1500.0

@@ -4,7 +4,7 @@
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_igp8f"]
 albedo_texture = ExtResource("1_2sc3x")
-uv1_scale = Vector3(3, 2, 1)
+uv1_triplanar = true
 
 [sub_resource type="BoxMesh" id="BoxMesh_jf1qb"]
 material = SubResource("StandardMaterial3D_igp8f")
