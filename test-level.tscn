@@ -1,8 +1,9 @@
-[gd_scene load_steps=10 format=3 uid="uid://cnswvw6hj3mgo"]
+[gd_scene load_steps=11 format=3 uid="uid://cnswvw6hj3mgo"]
 
 [ext_resource type="Texture2D" uid="uid://osyntdjucwmg" path="res://assets/textures/texture_black_05.png" id="1_3oto2"]
 [ext_resource type="PackedScene" uid="uid://b5xw6n5qhjbfh" path="res://player.tscn" id="1_u6s6d"]
 [ext_resource type="PackedScene" uid="uid://btreadwrdqtdk" path="res://totem.tscn" id="2_k33s8"]
+[ext_resource type="PackedScene" uid="uid://biwqho35dv7mg" path="res://light-sphere.tscn" id="4_hxkqm"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_0mfat"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -38,15 +39,25 @@ shadow_enabled = true
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_1gh8v")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+[node name="Ground" type="MeshInstance3D" parent="."]
 mesh = SubResource("PlaneMesh_h52u0")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D"]
+[node name="StaticBody3D" type="StaticBody3D" parent="Ground"]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ground/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_7344g")
 
 [node name="Player" parent="." instance=ExtResource("1_u6s6d")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -5)
 
-[node name="AnimatableBody3D" parent="." instance=ExtResource("2_k33s8")]
+[node name="Totem" parent="." instance=ExtResource("2_k33s8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, 1)
+
+[node name="Totem2" parent="." instance=ExtResource("2_k33s8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -3)
+
+[node name="LightSphere" parent="." instance=ExtResource("4_hxkqm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 1)
+
+[node name="Totem3" parent="." instance=ExtResource("2_k33s8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3)
